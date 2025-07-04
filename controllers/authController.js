@@ -56,14 +56,12 @@ const register = async (req, res) => {
 const verifyEmail = async (req, res) => {
   const { verificationToken, email } = req.body;
   const user = await User.findOne({ email });
-  console.log(1);
+
   if (!user) {
-    console.log(2);
     throw new CustomError.UnauthenticatedError("Verification Failed");
   }
 
   if (user.verificationToken !== verificationToken) {
-    console.log(3);
     throw new CustomError.UnauthenticatedError("Verification Failed");
   }
 
@@ -71,7 +69,7 @@ const verifyEmail = async (req, res) => {
   user.verificationToken = "";
 
   await user.save();
-  console.log(4);
+
   res.status(StatusCodes.OK).json({ msg: "Email Verified" });
 };
 
