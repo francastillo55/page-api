@@ -20,6 +20,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     signed: true,
     expires: new Date(Date.now() + oneDay),
     sameSite: "None",
+    path: "/",
   });
 
   res.cookie("refreshToken", refreshTokenJWT, {
@@ -28,6 +29,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     signed: true,
     expires: new Date(Date.now() + longerExp),
     sameSite: "None",
+    path: "/",
   });
 };
 // const attachSingleCookieToResponse = ({ res, user }) => {
