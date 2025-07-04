@@ -39,7 +39,7 @@ app.use(
 app.use(helmet());
 app.use(
   cors({
-    origin: "https://spectacular-sunshine-c83388.netlify.app/", // tu dominio de Netlify
+    origin: "https://spectacular-sunshine-c83388.netlify.app", // tu dominio de Netlify
     credentials: true,
   })
 );
