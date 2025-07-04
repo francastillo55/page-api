@@ -21,6 +21,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     expires: new Date(Date.now() + oneDay),
     sameSite: "None",
     path: "/",
+    domain: ".onrender.com",
   });
 
   res.cookie("refreshToken", refreshTokenJWT, {
@@ -30,6 +31,7 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     expires: new Date(Date.now() + longerExp),
     sameSite: "None",
     path: "/",
+    domain: ".onrender.com",
   });
 };
 // const attachSingleCookieToResponse = ({ res, user }) => {
