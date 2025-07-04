@@ -43,7 +43,7 @@ app.use(
     credentials: true,
   })
 );
-app.use(cors());
+
 app.use(xss());
 app.use(mongoSanitize());
 
