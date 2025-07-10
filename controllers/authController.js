@@ -185,10 +185,15 @@ const resetPassword = async (req, res) => {
       user.passwordToken = null;
       user.passwordTokenExpirationDate = null;
       await user.save();
+
+      return res.send("reset password");
     }
+
+    return res.status(404).send("algo salio mal");
   }
 
-  res.send("reset password");
+  res.status(404).send("algo salio mal");
+  //res.send("algo salio mal");
 };
 
 module.exports = {
