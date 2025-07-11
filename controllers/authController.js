@@ -145,7 +145,7 @@ const logout = async (req, res) => {
 
     sameSite: "None",
   });
-  res.status(StatusCodes.OK).json({ msg: "user logged out!" });
+  res.status(StatusCodes.OK).json({ msg: "user logged out" });
 };
 
 const forgotPassword = async (req, res) => {
