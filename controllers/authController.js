@@ -131,6 +131,7 @@ const logout = async (req, res) => {
     expires: new Date(Date.now()),
     secure: process.env.NODE_ENV === "production",
     signed: true,
+    domain: "https://page-api-d5mj.onrender.com",
 
     sameSite: "None",
   });
@@ -140,6 +141,7 @@ const logout = async (req, res) => {
 
     secure: process.env.NODE_ENV === "production",
     signed: true,
+    domain: "https://page-api-d5mj.onrender.com",
 
     sameSite: "None",
   });
