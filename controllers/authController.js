@@ -129,9 +129,9 @@ const logout = async (req, res) => {
   res.cookie("accessToken", "logout", {
     httpOnly: true,
     expires: new Date(Date.now()),
-    secure: process.env.NODE_ENV === "production",
+    secure: true, //process.env.NODE_ENV === "production",
     signed: true,
-    domain: "https://page-api-d5mj.onrender.com",
+    // domain: "https://page-api-d5mj.onrender.com",
 
     sameSite: "None",
   });
@@ -139,9 +139,9 @@ const logout = async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now()),
 
-    secure: process.env.NODE_ENV === "production",
+    secure: true, //process.env.NODE_ENV === "production",
     signed: true,
-    domain: "https://page-api-d5mj.onrender.com",
+    // domain: "https://page-api-d5mj.onrender.com",
 
     sameSite: "None",
   });
