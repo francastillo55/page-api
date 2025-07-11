@@ -20,8 +20,8 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     signed: true,
     expires: new Date(Date.now() + oneDay),
     sameSite: "None",
-    domain: "https://page-api-d5mj.onrender.com",
-    path: "/",
+    // domain: "https://page-api-d5mj.onrender.com",
+    // path: "/",
   });
 
   res.cookie("refreshToken", refreshTokenJWT, {
@@ -30,8 +30,8 @@ const attachCookiesToResponse = ({ res, user, refreshToken }) => {
     signed: true,
     expires: new Date(Date.now() + longerExp),
     sameSite: "None",
-    domain: "https://page-api-d5mj.onrender.com",
-    path: "/",
+    // domain: "https://page-api-d5mj.onrender.com",
+    // path: "/",
   });
 };
 // const attachSingleCookieToResponse = ({ res, user }) => {
