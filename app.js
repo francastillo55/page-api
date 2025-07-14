@@ -39,7 +39,8 @@ app.use(
 app.use(helmet());
 app.use(
   cors({
-    origin: "https://melodic-griffin-47317f.netlify.app", // tu dominio de Netlify
+    //origin: "https://melodic-griffin-47317f.netlify.app", // tu dominio de Netlify
+    origin: "https://wordle.franccr.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })

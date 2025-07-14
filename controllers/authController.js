@@ -32,7 +32,7 @@ const register = async (req, res) => {
     role,
     verificationToken,
   });
-  const origin = "https://melodic-griffin-47317f.netlify.app";
+  const origin = "https://wordle.franccr.com";
   //const origin = "http://localhost:3000";
   // const newOrigin = 'https://react-node-user-workflow-front-end.netlify.app';
 
@@ -160,7 +160,7 @@ const forgotPassword = async (req, res) => {
     const passwordToken = crypto.randomBytes(70).toString("hex");
     // send email
     //const origin = "http://localhost:3000";
-    const origin = "https://melodic-griffin-47317f.netlify.app";
+    const origin = "https://wordle.franccr.com";
     await sendResetPasswordEmail({
       name: user.name,
       email: user.email,
