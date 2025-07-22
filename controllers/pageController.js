@@ -24,7 +24,19 @@ const createPage = async (req, res) => {
 };
 
 const getAllPages = async (req, res) => {
+  //console.log(req.user);
+
   const pagesMeta = await PageMetadata.find({});
+
+  res
+    .status(StatusCodes.OK)
+    .json({ pages: pagesMeta, count: pagesMeta.length });
+};
+const getUserPages = async (req, res) => {
+  const { userId } = req.user;
+  console.log(userId);
+
+  const pagesMeta = await PageMetadata.find({ user: userId });
 
   res
     .status(StatusCodes.OK)
@@ -45,17 +57,19 @@ const getSinglePage = async (req, res) => {
 
 const updatePage = async (req, res) => {
   const { id: pageId } = req.params;
+  const { userId } = req.user;
 
-  const pageCont = await PageContent.findOneAndUpdate(
-    { pageId: pageId },
+  const pageMeta = await PageMetadata.findOneAndUpdate(
+    { _id: pageId, user: userId },
     req.body,
     {
       new: true,
       runValidators: true,
     }
   );
-  const pageMeta = await PageMetadata.findOneAndUpdate(
-    { _id: pageId },
+
+  const pageCont = await PageContent.findOneAndUpdate(
+    { pageId: pageId },
     req.body,
     {
       new: true,
@@ -72,12 +86,17 @@ const updatePage = async (req, res) => {
 
 const deletePage = async (req, res) => {
   const { id: pageId } = req.params;
+  const { userId } = req.user;
 
   const pageMeta = await PageMetadata.findOne({ _id: pageId });
   const pageCont = await PageContent.findOne({ pageId: pageId });
 
   if (!pageMeta) {
     throw new CustomError.NotFoundError(`No page with id : ${pageId}`);
+  }
+
+  if (!pageMeta.user.equals(userId)) {
+    throw new CustomError.BadRequestError("Not allowed");
   }
 
   await pageMeta.remove();
@@ -90,4 +109,5 @@ module.exports = {
   getSinglePage,
   updatePage,
   deletePage,
+  getUserPages,
 };
