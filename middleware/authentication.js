@@ -3,10 +3,8 @@ const { isTokenValid } = require("../utils");
 const Token = require("../models/Token");
 const { attachCookiesToResponse } = require("../utils");
 const authenticateUser = async (req, res, next) => {
-  console.log("entrada");
   const { refreshToken, accessToken } = req.signedCookies;
-  console.log(refreshToken);
-  console.log(accessToken);
+
   try {
     if (accessToken) {
       const payload = isTokenValid(accessToken);

@@ -23,6 +23,7 @@ const userRouter = require("./routes/userRoutes");
 const productRouter = require("./routes/productRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
 const orderRouter = require("./routes/orderRoutes");
+const pageRouter = require("./routes/pageRoutes");
 
 // middleware
 const notFoundMiddleware = require("./middleware/not-found");
@@ -39,7 +40,6 @@ app.use(
 app.use(helmet());
 app.use(
   cors({
-    //origin: "https://melodic-griffin-47317f.netlify.app", // tu dominio de Netlify
     origin: "https://wordle.franccr.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
@@ -57,6 +57,7 @@ app.use(fileUpload());
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/pages", pageRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/reviews", reviewRouter);
 app.use("/api/v1/orders", orderRouter);
