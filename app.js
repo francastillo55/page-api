@@ -24,6 +24,7 @@ const productRouter = require("./routes/productRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
 const orderRouter = require("./routes/orderRoutes");
 const pageRouter = require("./routes/pageRoutes");
+const imageRouter = require("./routes/imageRoutes");
 
 // middleware
 const notFoundMiddleware = require("./middleware/not-found");
@@ -53,11 +54,20 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use(express.static("./public"));
-app.use(fileUpload());
+//app.use(fileUpload());
+app.use(fileUpload({ useTempFiles: true }));
+
+const cloudinary = require("cloudinary").v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/pages", pageRouter);
+app.use("/api/v1/images", imageRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/reviews", reviewRouter);
 app.use("/api/v1/orders", orderRouter);
