@@ -9,6 +9,14 @@ const uploadSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    required: true,
+  },
+  size: {
+    type: String,
+    required: true,
+  },
 
   user: {
     type: mongoose.Types.ObjectId,
