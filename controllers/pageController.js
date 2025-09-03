@@ -33,10 +33,11 @@ const getAllPages = async (req, res) => {
     .json({ pages: pagesMeta, count: pagesMeta.length });
 };
 const getUserPages = async (req, res) => {
-  const { userId } = req.user;
-  console.log(userId);
+  const { type } = req.params;
 
-  const pagesMeta = await PageMetadata.find({ user: userId });
+  const { userId } = req.user;
+
+  const pagesMeta = await PageMetadata.find({ user: userId, type: type });
 
   res
     .status(StatusCodes.OK)
@@ -103,6 +104,19 @@ const deletePage = async (req, res) => {
   await pageCont.remove();
   res.status(StatusCodes.OK).json({ msg: "Success! Product removed." });
 };
+
+const getContentAndMeta = async (req, res) => {
+  const { userId } = req.user;
+  const { type } = req.params;
+  console.log(type);
+
+  let pages = await PageContent.find().populate("pageId");
+
+  pages = pages.filter(
+    (p) => p.pageId?.user?.toString() === userId && p.pageId?.type === type
+  );
+  res.status(StatusCodes.OK).json({ pages });
+};
 module.exports = {
   createPage,
   getAllPages,
@@ -110,4 +124,5 @@ module.exports = {
   updatePage,
   deletePage,
   getUserPages,
+  getContentAndMeta,
 };

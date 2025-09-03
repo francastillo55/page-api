@@ -12,12 +12,14 @@ const {
   updatePage,
   deletePage,
   getUserPages,
+  getContentAndMeta,
 } = require("../controllers/pageController");
 
 //router.route("/").post(createPage);
 router.route("/").post(authenticateUser, createPage).get(getAllPages);
 
-router.route("/user").get(authenticateUser, getUserPages);
+router.route("/user/:type").get(authenticateUser, getUserPages);
+router.route("/user/:type/full").get(authenticateUser, getContentAndMeta);
 router
   .route("/:id")
   .get(authenticateUser, getSinglePage)
